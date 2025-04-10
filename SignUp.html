@@ -5,24 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sign Up - EnglishAI Tutor</title>
   <link rel="stylesheet" href="style.css" />
+  <script>
+    function goToSection(id) {
+      localStorage.setItem('scrollTo', id);
+    }
+  </script>
+  <script src="SignUp.js" defer></script>
 </head>
+
 <body>
+  <!-- Log In Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeLoginModal()">&times;</span>
+      <h2>Log In</h2>
+      <form id="loginForm">
+        <label for="loginUsername">Username:</label>
+        <input type="text" id="loginUsername" required />
+
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" required />
+
+        <button type="submit">Log In</button>
+      </form>
+    </div>
+  </div>
 
   <header>
-    <div class="logo">EnglishAI Tutor</div>
+    <a href="main.html" class="logo">EnglishAI Tutor</a>
 
     <nav>
       <ul>
-        <li><a href="index.html#home">Home</a></li>
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#services">Services</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="main.html" onclick="goToSection('home')">Home</a></li>
+        <li><a href="main.html" onclick="goToSection('about')">About</a></li>
+        <li><a href="main.html" onclick="goToSection('services')">Services</a></li>
+        <li><a href="main.html" onclick="goToSection('contact')">Contact</a></li>
       </ul>
     </nav>
-
-    <div class="auth-buttons">
-      <a href="login.html" class="login-btn">Log In</a>
-    </div>
   </header>
 
   <main>
@@ -30,30 +49,34 @@
       <h2>Sign Up</h2>
       <p>Create your account to start learning with EnglishAI Tutor!</p>
 
-      <form action="#" method="post">
-        <label for="fullname">Full Name:</label>
-        <input type="text" id="fullname" name="fullname" required />
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required />
-
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required />
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required />
-
-        <label for="confirm">Confirm Password:</label>
-        <input type="password" id="confirm" name="confirm" required />
-
+      <form action="#" method="post" id="signUpForm">
+        <label for="signupFullname">Full Name:</label>
+        <input type="text" id="signupFullname" name="fullname" required />
+      
+        <label for="signupEmail">Email:</label>
+        <input type="email" id="signupEmail" name="email" required />
+      
+        <label for="signupUsername">Username:</label>
+        <input type="text" id="signupUsername" name="username" required />
+      
+        <label for="signupPassword">Password:</label>
+        <input type="password" id="signupPassword" name="password" required />
+      
+        <label for="signupConfirm">Confirm Password:</label>
+        <input type="password" id="signupConfirm" name="confirm" required />
+      
         <button type="submit">Sign Up</button>
+        <p>
+          Already have an account?
+          <a href="#" onclick="openLoginModal()">Log In</a>
+        </p>
       </form>
+      
     </section>
   </main>
 
   <footer>
     <p>&copy; 2025 EnglishAI Tutor. All rights reserved.</p>
   </footer>
-
 </body>
 </html>

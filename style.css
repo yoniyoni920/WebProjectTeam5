@@ -175,4 +175,54 @@
       align-self: flex-end;
     }
   }
-  
+  html {
+    scroll-behavior: smooth;
+  }
+  /* Modal container */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+/* Modal box */
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+/* Close button (X) */
+.close {
+  float: right;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #aaa;
+}
+
+.close:hover {
+  color: #000;
+}
+.logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+}
+.logout-btn {
+  margin-left: 10px;
+  color: #333;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+}
