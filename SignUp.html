@@ -10,7 +10,8 @@
       localStorage.setItem('scrollTo', id);
     }
   </script>
-  <script src="SignUp.js" defer></script>
+ 
+
 </head>
 
 <body>
@@ -65,6 +66,54 @@
         <label for="signupConfirm">Confirm Password:</label>
         <input type="password" id="signupConfirm" name="confirm" required />
       
+         <div class="captcha-section">
+                    <label for="captcha-type" class="label-style">Choose CAPTCHA Type:</label>
+                    <select id="captcha-type" class="select-style">
+                        <option value="arithmetic" selected>Arithmetic</option>
+                        <option value="image">Image Selection</option>
+                    </select>
+          </div>
+          <div id="arithmetic-captcha-container" class="captcha-container">
+              <label for="captcha-answer" class="label-style">Solve the CAPTCHA:</label>
+              <div class="captcha-flex">
+                   <span id="arithmetic-challenge" class="captcha-challenge"></span>
+                   <button type="button" id="refresh-arithmetic-captcha" title="Refresh CAPTCHA" class="refresh-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="refresh-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 4v5h5M20 20v-5h-5M20 4a8.001 8.001 0 00-13.657 5.657M4 20a8.001 8.001 0 0013.657-5.657" />
+                    </svg>
+                  </button>
+              </div>
+                <input type="text" id="arithmetic-answer" name="arithmetic-answer" class="input-style" placeholder="Enter the answer">
+                <p id="arithmetic-error" class="error-message hidden">Incorrect CAPTCHA answer.</p>
+          </div>
+          <div id="image-captcha-container" class="captcha-container hidden">
+              <label class="label-style">Select all images containing: <span id="image-challenge-text" class="font-semibold"></span></label>
+
+              <button type="button" id="refresh-image-captcha" title="Refresh CAPTCHA" class="refresh-button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="refresh-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 4v5h5M20 20v-5h-5M20 4a8.001 8.001 0 00-13.657 5.657M4 20a8.001 8.001 0 0013.657-5.657" />
+                </svg>
+              </button>
+
+
+
+                  <div id="image-options" class="image-options"></div>
+                  <p id="image-error" class="error-message hidden">Please select the correct images.</p>
+          </div>
+          <p id="captcha-attempts-error" class="error-message hidden">Too many incorrect CAPTCHA attempts. Please try again later.</p>
+          <div id="registerMessage" style="color: red; margin-top: 10px;"></div>
+
+
+
+
+
+
+
+
+
+
         <button type="submit">Sign Up</button>
         <p>
           Already have an account?
@@ -78,5 +127,9 @@
   <footer>
     <p>&copy; 2025 EnglishAI Tutor. All rights reserved.</p>
   </footer>
+
+  <script src="Login.js" defer></script>
+  <script src="SignUp.js" defer></script>
+  <script src="Captcha.js" defer></script>
 </body>
 </html>
