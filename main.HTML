@@ -7,6 +7,22 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Log In Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeLoginModal()">&times;</span>
+      <h2>Log In</h2>
+      <form id="loginForm">
+        <label for="loginUsername">Username:</label>
+        <input type="text" id="loginUsername" required />
+
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" required />
+
+        <button type="submit">Log In</button>
+      </form>
+    </div>
+  </div>
 
   <header>
     <div class="logo">EnglishAI Tutor</div>
@@ -21,7 +37,7 @@
     </nav>
 
     <div class="auth-buttons">
-      <a href="login.html" class="login-btn">Log In</a>
+      <a href="#" class="login-btn" onclick="openLoginModal()">Log In</a>
       <a href="SignUp.html" class="signup-btn">Sign Up</a>
     </div>
   </header>
@@ -72,6 +88,7 @@
   <footer>
     <p>&copy; 2025 EnglishAI Tutor. All rights reserved.</p>
   </footer>
-
+  <script src="Login.js" defer></script>
+  <script src="main.js" defer></script>
 </body>
 </html>
