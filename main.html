@@ -5,29 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EnglishAI Tutor</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="main.js" defer></script>
 </head>
-
 <body>
-<!-- Log In Modal -->
-<div id="loginModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeLoginModal()">&times;</span>
-    <h2>Log In</h2>
-    <form id="loginForm">
-      <label for="username">Username:</label>
-      <input type="text" id="loginUsername" required />
+  <!-- Log In Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeLoginModal()">&times;</span>
+      <h2>Log In</h2>
+      <form id="loginForm">
+        <label for="loginUsername">Username:</label>
+        <input type="text" id="loginUsername" required />
 
-      <label for="password">Password:</label>
-      <input type="password" id="loginPassword" required />
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" required />
 
-      <button type="submit">Log In</button>
-    </form>
+        <button type="submit">Log In</button>
+      </form>
+    </div>
   </div>
-</div>
 
   <header>
-    <a href="main.html" class="logo">EnglishAI Tutor</a>
+    <div class="logo">EnglishAI Tutor</div>
 
     <nav>
       <ul>
@@ -90,6 +88,7 @@
   <footer>
     <p>&copy; 2025 EnglishAI Tutor. All rights reserved.</p>
   </footer>
-
+  <script src="Login.js" defer></script>
+  <script src="main.js" defer></script>
 </body>
 </html>
