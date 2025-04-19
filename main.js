@@ -1,26 +1,4 @@
-// Open the login modal
-function openLoginModal() {
-    const modal = document.getElementById("loginModal");
-    if (modal) {
-      modal.style.display = "block";
-    }
-  }
-  
-  // Close the login modal
-  function closeLoginModal() {
-    const modal = document.getElementById("loginModal");
-    if (modal) {
-      modal.style.display = "none";
-    }
-  }
-  
-  // Close modal when clicking outside of it
-  window.onclick = function (event) {
-    const modal = document.getElementById("loginModal");
-    if (event.target === modal) {
-      modal.style.display = "none";
-    }
-  };
+
   
   // Smooth scroll to section if coming from another page
   const target = localStorage.getItem("scrollTo");
@@ -71,8 +49,3 @@ function openLoginModal() {
     }
   });
   
-  // Log out
-  function logout() {
-    localStorage.removeItem("loggedInUser");
-    location.reload();
-  }
