@@ -40,6 +40,28 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     });
   }
+ // Function to generate fake user data
+ function generateFakeUsers(num) {
+  const fakeUsers = [];
+  for (let i = 0; i < num; i++) {
+    const user = {
+      fullName: `Fake User ${i + 1}`,
+      email: `fakeuser${i + 1}@example.com`,
+      username: `fakeuser${i + 1}`,
+      password: `password${i + 1}`,
+      confirm: `password${i + 1}`
+    };
+    fakeUsers.push(user);
+  }
 
-  
+  // Save fake users to localStorage
+  localStorage.setItem("users", JSON.stringify(fakeUsers));
+  alert(`${num} fake users have been added to localStorage.`);
+}
+
+// Call the function to add fake users
+// You can change the number to however many fake users you need
+generateFakeUsers(10); // Example: Adds 10 fake users
 });
+  
+
