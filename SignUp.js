@@ -1,27 +1,3 @@
-// Open the login modal
-function openLoginModal() {
-    const modal = document.getElementById("loginModal");
-    if (modal) {
-      modal.style.display = "block";
-    }
-}
-
-// Close the login modal
-function closeLoginModal() {
-    const modal = document.getElementById("loginModal");
-    if (modal) {
-      modal.style.display = "none";
-    }
-}
-
-// Close modal when clicking outside of it
-window.onclick = function (event) {
-    const modal = document.getElementById("loginModal");
-    if (event.target === modal) {
-      modal.style.display = "none";
-    }
-};
-
 // Handle registration form submission
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("signUpForm");
@@ -38,40 +14,37 @@ document.addEventListener("DOMContentLoaded", function () {
         confirm: document.getElementById("signupConfirm").value
       };
 
-      if (user.password !== user.confirm) {
-        alert("Passwords do not match!");
+
+      if (captcha.validateCaptcha()) {
+        alert('Registration successful (CAPTCHA passed)!.');
+        if (user.password === user.confirm) {
+
+           
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+            users.push(user);
+            localStorage.setItem("users", JSON.stringify(users));
+            localStorage.setItem("loggedInUser", JSON.stringify(user));
+            //saveToLocalStorage(user);
+            window.location.href = "main.html";
+            //alert('Registration successful (CAPTCHA passed and data saved)!');
+         }
+         else{
+          alert("Passwords do not match!");
+          return;
+         }
+    }
+    else{
+        alert("Chaptcha Incorrect, Please try Again.");
         return;
-      }
 
-      let users = JSON.parse(localStorage.getItem("users")) || [];
-      users.push(user);
-      localStorage.setItem("users", JSON.stringify(users));
-      localStorage.setItem("loggedInUser", JSON.stringify(user));
+    }
+    
 
-      window.location.href = "main.html";
+      
+
+     
     });
   }
 
-  // Handle login form submission
-  const loginForm = document.getElementById("loginForm");
-  if (loginForm) {
-    loginForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-      const username = document.getElementById("loginUsername").value;
-      const password = document.getElementById("loginPassword").value;
-
-      const users = JSON.parse(localStorage.getItem("users")) || [];
-      const existingUser = users.find(
-        (u) => u.username === username && u.password === password
-      );
-
-      if (existingUser) {
-        localStorage.setItem("loggedInUser", JSON.stringify(existingUser));
-        closeLoginModal();
-        window.location.href = "main.html";
-      } else {
-        alert("Invalid username or password!");
-      }
-    });
-  }
+  
 });
