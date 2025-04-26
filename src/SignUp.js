@@ -1,9 +1,8 @@
-// Handle registration form submission
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("signUpForm");
 
   if (form) {
-    form.addEventListener("submit", function (e) {
+    form.addEventListener("submit", async function (e) {
       e.preventDefault();
 
       const user = {
@@ -14,54 +13,34 @@ document.addEventListener("DOMContentLoaded", function () {
         confirm: document.getElementById("signupConfirm").value
       };
 
-
-      if (captcha.validateCaptcha()) {
-        alert('Registration successful (CAPTCHA passed)!.');
-        if (user.password === user.confirm) {
-
-           
-            let users = JSON.parse(localStorage.getItem("users")) || [];
-            users.push(user);
-            localStorage.setItem("users", JSON.stringify(users));
-            localStorage.setItem("loggedInUser", JSON.stringify(user));
-            //saveToLocalStorage(user);
-            window.location.href = "main.html";
-            //alert('Registration successful (CAPTCHA passed and data saved)!');
-         }
-         else{
-          alert("Passwords do not match!");
-          return;
-         }
-    }
-    else{
-        alert("Chaptcha Incorrect, Please try Again.");
+      if (!captcha.validateCaptcha()) {
+        alert("Captcha incorrect. Please try again.");
         return;
+      }
 
-    }
+      if (user.password !== user.confirm) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      try {
+        const response = await fetch('http://localhost:3000/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(user)
+        });
+
+        if (response.ok) {
+          alert('Registration successful!');
+          localStorage.setItem("loggedInUser", JSON.stringify(user));
+          window.location.href = "main.html";
+        } else {
+          alert('Failed to register user.');
+        }
+      } catch (error) {
+        console.error('Error during registration:', error);
+        alert('An error occurred. Please try again.');
+      }
     });
   }
- // Function to generate fake user data
- function generateFakeUsers(num) {
-  const fakeUsers = [];
-  for (let i = 0; i < num; i++) {
-    const user = {
-      fullName: `Fake User ${i + 1}`,
-      email: `fakeuser${i + 1}@example.com`,
-      username: `fakeuser${i + 1}`,
-      password: `password${i + 1}`,
-      confirm: `password${i + 1}`
-    };
-    fakeUsers.push(user);
-  }
-
-  // Save fake users to localStorage
-  localStorage.setItem("users", JSON.stringify(fakeUsers));
-  alert(`${num} fake users have been added to localStorage.`);
-}
-
-// Call the function to add fake users
-// You can change the number to however many fake users you need
-generateFakeUsers(10); // Example: Adds 10 fake users
 });
-  
-
