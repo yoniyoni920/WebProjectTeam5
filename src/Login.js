@@ -1,3 +1,14 @@
+async function getUsers() {
+  try {
+    const response = await fetch('/data.json');
+    const users = await response.json();
+    console.log(users); // All users
+    return users;
+  } catch (error) {
+    console.error('Failed to load users:', error);
+  }
+}
+
 // Open the login modal
 function openLoginModal() {
     const modal = document.getElementById("loginModal");
@@ -23,7 +34,13 @@ window.onclick = function (event) {
 };
 
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded",async function () {
+  const users = await getUsers();
+ // if (users) {
+  //  localStorage.setItem("users", JSON.stringify(users));
+ // }
+
+
   // Handle login form submission
   const loginForm = document.getElementById("loginForm");
   if (loginForm) {
@@ -32,8 +49,8 @@ document.addEventListener("DOMContentLoaded", function () {
       const username = document.getElementById("loginUsername").value;
       const password = document.getElementById("loginPassword").value;
 
-      const users = JSON.parse(localStorage.getItem("users")) || [];
-      const existingUser = users.find(
+      const currentUsers=users.users;
+      const existingUser = currentUsers.find(
         (u) => u.username === username && u.password === password
       );
 
@@ -53,3 +70,4 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.removeItem("loggedInUser");
     location.reload();
   }
+ 
